@@ -47,11 +47,11 @@ Copy file:
 * Navigation.ipynb
   *   This notebook contains the training loop.
   *   Relevant hyperparameters that can be found here are:
-     1) Number of training episodes, n_episodes
-     2) Maximum number of steps per simulation,
-     3) Epsilon start value, eps_start
-     4) Mininmum epsiolon value eps_end
-     5) Epsilon decay rate, eps_decay
+      1) Number of training episodes, n_episodes
+      2) Maximum number of steps per simulation,
+      3) Epsilon start value (for epsilon greedy), eps_start
+      4) Mininmum epsiolon value (for epsilon greedy), eps_end
+      5) Epsilon decay rate (for epsilon greedy), eps_decay
 * Model.py
   *   Basic torch NN with 2 hidden linear layers with ReLu activation function and one linear output function without activation fuction
   *   input size is based on the state space of the banana environment.
