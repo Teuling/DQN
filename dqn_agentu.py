@@ -13,15 +13,23 @@ BATCH_SIZE = 128         # minibatch size
 GAMMA = 0.98            # discount factor
 #TAU = 1e-2              # for soft update of target parameters
 TAU = 1e-3
-LR = 9e-4               # learning rate 
-UPDATE_EVERY = 8        # how often to update the network
+LR = 7e-4               # learning rate 
+UPDATE_EVERY = 4        # how often to update the network
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#BUFFER_SIZE = int(1e5)  # replay buffer size
+#BATCH_SIZE = 64         # minibatch size
+#GAMMA = 0.99            # discount factor
+#TAU = 1e-3              # for soft update of target parameters
+#LR = 5e-4               # learning rate 
+#UPDATE_EVERY = 4        # how often to update the network
+
+#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 
 class Agent():
     """Interacts with and learns from the environment."""
 
-    def __init__(self, state_size, action_size, seed):
+    def __init__(self, state_size, action_size, seed, method="ddqn"):
         """Initialize an Agent object.
         
         Params
@@ -30,6 +38,7 @@ class Agent():
             action_size (int): dimension of each action
             seed (int): random seed
         """
+        self.method = method
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)
@@ -86,15 +95,20 @@ class Agent():
         """
         states, actions, rewards, next_states, dones = experiences
         
-        
-        max_actions_next = self.qnetwork_local(next_states).detach().max(1)[1]
-        # Use those max actions to get the corresponding Q-values from the target network
-        # Shape: (batch_size, 1)
-        Q_targets_next = self.qnetwork_target(next_states).gather(1, max_actions_next.unsqueeze(1))
-        
 
-        # Get max predicted Q values (for next states) from target model
-        #Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
+        if self.method == "ddqn":
+            # Get the max actions from the target network (not the Q-values)
+            # Shape: (batch_size,)
+            max_actions_next = self.qnetwork_local(next_states).detach().max(1)[1]
+            # Use those max actions to get the corresponding Q-values from the target network
+            # Shape: (batch_size, 1)
+            Q_targets_next = self.qnetwork_target(next_states).gather(1, max_actions_next.unsqueeze(1))
+        elif self.method == "dqn":
+            # Get max predicted Q values (for next states) from target model
+            Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)
+        else:
+            raise Exception("no method defined!")        
+        
         # Compute Q targets for current states 
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
 
