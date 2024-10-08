@@ -56,6 +56,9 @@ Copy file:
   *   Basic torch NN with 2 hidden linear layers with ReLu activation function and one linear output function without activation fuction
   *   input size is based on the state space of the banana environment.
   *   output size is based on the action space of the banana environment.
+  * Relevant parameters:
+    1) number of weights in first layer, fc1_units
+    2) number of weights in second layer, fc2_units
 * dqn_agentu.py
   *   Contains the reinforcement class Agent and the replay buffer class ReplayBuffer
   *   Relevant hyperparameters to be found here are:
