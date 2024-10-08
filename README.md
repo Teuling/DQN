@@ -47,11 +47,11 @@ Copy file:
 * Navigation.ipynb
   *   This notebook contains the training loop.
   *   Relevant hyperparameters that can be found here are:
-    1) Number of training episodes, n_episodes
-    2) Maximum number of steps per simulation,
-    3) Epsilon start value, eps_start
-    4) Mininmum epsiolon value eps_end
-    5) Epsilon decay rate, eps_decay
+     1) Number of training episodes, n_episodes
+     2) Maximum number of steps per simulation,
+     3) Epsilon start value, eps_start
+     4) Mininmum epsiolon value eps_end
+     5) Epsilon decay rate, eps_decay
 * Model.py
   *   Basic torch NN with 2 hidden linear layers with ReLu activation function and one linear output function without activation fuction
   *   input size is based on the state space of the banana environment.
@@ -59,9 +59,9 @@ Copy file:
 * dqn_agentu.py
   *   Contains the reinforcement class Agent and the replay buffer class ReplayBuffer
   *   Relevant hyperparameters to be found here are:
-    1) BUFFER_SIZE, size of the replay buffer
-    2) BATCH_SIZE, the sample batch size used to update the NN
-    3) GAMMA, the discount factor for how much to take next state Q value into account
-    4) TAU, for soft updating the target network, [0..1], higher values update more from the local network parameters, relative to the existing target parameters
-    5) LR, learning rate for the NN
-    6) UPDATE_EVERY, frequency in units of episodes for updating the target network
+     1) BUFFER_SIZE, size of the replay buffer
+     2) BATCH_SIZE, the sample batch size used to update the NN
+     3) GAMMA, the discount factor for how much to take next state Q value into account
+     4) TAU, for soft updating the target network, [0..1], higher values update more from the local network parameters, relative to the existing target parameters
+     5) LR, learning rate for the NN
+     6) UPDATE_EVERY, frequency in units of episodes for updating the target network
