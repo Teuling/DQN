@@ -68,3 +68,5 @@ Copy file:
      4) TAU, for soft updating the target network, [0..1], higher values update more from the local network parameters, relative to the existing target parameters
      5) LR, learning rate for the NN
      6) UPDATE_EVERY, frequency in units of episodes for updating the target network
+ * checkpoint.pth
+    * the trained model weights from the described network parameters in report.pdf
