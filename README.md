@@ -39,3 +39,29 @@ Then, place the file in the p1_navigation/ folder in the course GitHub repositor
 (For Windows users) Check out this [link]([opens in a new tab](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64)) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
 
 (For AWS) If you'd like to train the agent on AWS (and have not [enabled a virtual screen]([opens in a new tab](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md))), then please use this [link]([opens in a new tab](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip)) to obtain the "headless" version of the environment. You will not be able to watch the agent without enabling a virtual screen, but you will be able to train the agent. (To watch the agent, you should [follow the instructions to enable a virtual screen]([opens in a new tab](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), and then download the environment for the Linux operating system above.)
+
+# Copy files
+
+Copy file:
+
+* Navigation.ipynb
+  *   This notebook contains the training loop.
+  *   Relevant hyperparameters that can be found here are:
+    1) Number of training episodes, n_episodes
+    2) Maximum number of steps per simulation,
+    3) Epsilon start value, eps_start
+    4) Mininmum epsiolon value eps_end
+    5) Epsilon decay rate, eps_decay
+* Model.py
+  *   Basic torch NN with 2 hidden linear layers with ReLu activation function and one linear output function without activation fuction
+  *   input size is based on the state space of the banana environment.
+  *   output size is based on the action space of the banana environment.
+* dqn_agentu.py
+  *   Contains the reinforcement class Agent and the replay buffer class ReplayBuffer
+  *   Relevant hyperparameters to be found here are:
+    1) BUFFER_SIZE, size of the replay buffer
+    2) BATCH_SIZE, the sample batch size used to update the NN
+    3) GAMMA, the discount factor for how much to take next state Q value into account
+    4) TAU, for soft updating the target network, [0..1], higher values update more from the local network parameters, relative to the existing target parameters
+    5) LR, learning rate for the NN
+    6) UPDATE_EVERY, frequency in units of episodes for updating the target network
